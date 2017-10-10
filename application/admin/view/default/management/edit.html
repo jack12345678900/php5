@@ -1,0 +1,53 @@
+{extend name="public/base" /}
+
+{block name="body"}
+    <div class="main-title">
+        <h2>新增保修单</h2>
+    </div>
+    <form action="{:url('')}" method="post" class="form-horizontal">
+        <input type="hidden" name="id" value="{$id}">
+        <div class="form-item">
+            <label class="item-label">保修人<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="name" value="{$info.name|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+        <label class="item-label">电话<span class="check-tips"></span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="tel" value="{$info.tel|default=''}">
+        </div>
+    </div>
+        <div class="form-item">
+            <label class="item-label">地址<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="area" value="{$info.area|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">问题<span class="check-tips"></span></label>
+            <div class="controls">
+                <textarea name="intro" class="textarea" style="width: 390px">{$info.intro|default=''}</textarea>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">状态<span class="check-tips"></span></label>
+            <div class="controls">
+               未处理: <input type="radio" name="status" value="0" >
+                已受理:<input type="radio" name="status" value="1">
+            </div>
+        </div>
+        <div class="form-item">
+            <button class="btn submit-btn ajax-posts" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+
+{/block}
+
+{block name="script"}
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:url('index')}');
+    </script>
+{/block}

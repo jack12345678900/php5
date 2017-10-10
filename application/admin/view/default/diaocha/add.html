@@ -1,0 +1,77 @@
+{extend name="public/base" /}
+
+{block name="body"}
+
+<div class="main-title">
+    <h2>{:isset($info['id'])?'编辑':'新增'}调查问卷</h2>
+</div>
+<form action="{:url()}" method="post" class="form-horizontal">
+    <div class="form-item">
+        <label class="item-label">问卷名称<span class="check-tips">（名称）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="name" value="{$info.name|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="item-label">截止时间<span class="check-tips">（时间）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="update_time" value="{$info.update_time|default=''}">
+        </div>
+    </div>
+    <!--<div class="form-item">-->
+    <!--<label class="item-label">模块<span class="check-tips">（所属模块）</span></label>-->
+    <!--<div class="controls">-->
+    <!--<input type="text" class="text input-large" name="module" value="{$info.module|default='admin'}">-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="form-item">
+        <label class="item-label">简述<span class="check-tips">（简述）</span></label>
+        <textarea name="intro" rows="8" cols="50">{$info.intro|default=''}</textarea>
+    </div>
+    <div class="form-item">
+        <label class="item-label">上传图片<span class="check-tips">（图片）</span></label>
+        <div class="controls">
+            <input type="file" class="text input-large" name="path" value="{$info.path|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="item-label">状态<span class="check-tips"></span></label>
+        <div class="controls">
+            禁用: <input type="radio" name="status" value="0">
+            启用:<input type="radio" name="status" value="1">
+        </div>
+    </div>
+
+    <div class="form-item">
+        <label class="item-label">参与人数<span class="check-tips">（人数）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="sn" value="{$info.sn|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <input type="hidden" name="id" value="{$info.id|default=''}">
+        <button class="btn submit-btn ajax-posts" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+    </div>
+</form>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+    Think.setValue("pid", {$info.pid|default = 0});
+    Think.setValue("hide", {$info.hide|default = 0});
+    Think.setValue("is_dev", {$info.is_dev|default = 0});
+    //导航高亮
+    highlight_subnav('{:url('index')}');
+</script>
+{/block}
+<script>
+    $('.input_cxcalendar').each(function(){
+        var a = new Calendar({
+            targetCls: $(this),
+            type: 'yyyy-mm-dd' 或者 ‘yyyy-mm-dd HH:MM:SS’ 或者 ‘yyyy-mm-dd HH:MM’;
+    },function(val){
+            console.log(val);  // 回调函数 当前选中的值
+        });
+    });
+</script>　

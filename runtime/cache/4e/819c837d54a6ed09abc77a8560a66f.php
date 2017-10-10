@@ -1,0 +1,3 @@
+<?php
+//000000000000a:5:{s:10:"pageHeader";a:1:{i:0;s:29:"\addons\thirdlogin\Thirdlogin";}s:10:"pageFooter";a:1:{i:0;s:27:"\addons\returntop\Returntop";}s:19:"documentDetailAfter";a:2:{i:0;s:35:"\addons\socialcomment\Socialcomment";i:1;s:17:"\addons\digg\Digg";}s:16:"adminArticleEdit";a:1:{i:0;s:37:"\addons\editorforadmin\Editorforadmin";}s:10:"AdminIndex";a:4:{i:0;s:25:"\addons\sitestat\Sitestat";i:1;s:29:"\addons\systeminfo\Systeminfo";i:2;s:23:"\addons\devteam\Devteam";i:3;s:21:"\addons\qiubai\Qiubai";}}
+?>
