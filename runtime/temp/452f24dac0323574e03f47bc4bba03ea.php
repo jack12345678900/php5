@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/management\index.html";i:1507451835;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/management\index.html";i:1507689635;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -148,10 +148,11 @@
             <td><span><?php echo $vo['intro']; ?></span></td>
             <td><span><?php echo date('Y-m-d H:i:s',($vo['create_time'])); ?></span></td>
             <td><?php echo !empty($vo['status']) && $vo['status']==1?"已处理":"待处理"; ?>
-                <a href="<?php echo url('edit?method=edit&id='.$vo['id']); ?>">编辑</a>
+                <a href="<?php echo url('update?method=update&id='.$vo['id']); ?>" id="tongguo">处理</a>
+
             </td>
             <td>
-
+                <a href="<?php echo url('edit?method=edit&id='.$vo['id']); ?>">编辑</a>
                 <a href="<?php echo url('del?method=del&id='.$vo['id']); ?>" class="confirm ajax-get">删除</a>
             </td>
         </tr>
@@ -286,6 +287,24 @@
     });
     //导航高亮
     highlight_subnav('<?php echo url('Management/index'); ?>');
+
+
+    $(function() {
+            $('#tongguo').click(function () {
+                    var id = $(this).closest('tr').attr('data-id');
+                    $.get(
+                        '/admin/yezhurenzheng/index.html', {'id': id}, function (data) {
+
+                            if (data == 'success') {
+                                alert("通过成功")
+                                location.reload();
+                            }
+                        }
+                    )
+                }
+            )
+        }
+    )
 </script>
 
 </body>

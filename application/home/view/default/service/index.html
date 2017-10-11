@@ -41,27 +41,9 @@
             </div>
         </div>
     </nav>
-    <!--导航结束-->
-    {notempty name="service"}
-    {volist name="service" id="service"}
     <div class="container-fluid">
-        <div class="row noticeList">
-            <a href="{:url('service_detail?id='.$service['id'])}">
-                <div class="col-xs-2">
-                    <img class="noticeImg" src="__STATIC__/image/1.png" />
-                </div>
-                <div class="col-xs-10">
-                    <p class="title">{$service.title}</p>
-                    <p class="description">{$service.description}</p>
-                    <p class="view">浏览: {$service.view} <span class="pull-right">{$service.create_time|date="Y-m-d H:i:s",###}</span> </p>
-                </div>
-            </a>
-        </div>
+        <div id="content"></div>
     </div>
-    {/volist}
-    {else/}
-    <td colspan="6" class="text-center"> 暂时还没有内容! </td>
-    {/notempty}
 </div>
 <div class="page">
     {$page}
@@ -70,5 +52,17 @@
 <script src="__STATIC__/jquery-1.11.2.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+{block name="script"}
+<script type="text/javascript">
+    var loadpage=function (num) {
+        $('.btn_load').remove();
+        $.get("{:url('service/ajaxpage')}",{page:num},function (data) {
+            $('#content').append(data);
+        });
+    }
+    loadpage(1);
+</script>
+{/block}
+
 </body>
 </html>

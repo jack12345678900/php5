@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:78:"C:\phpStudy\WWW\php5\public/../application/home/view/default/notice\index.html";i:1507442485;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:78:"C:\phpStudy\WWW\php5\public/../application/home/view/default/notice\index.html";i:1507706731;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -43,24 +43,9 @@
         </div>
     </nav>
     <!--导航结束-->
-    <?php if(!(empty($notice) || (($notice instanceof \think\Collection || $notice instanceof \think\Paginator ) && $notice->isEmpty()))): if(is_array($notice) || $notice instanceof \think\Collection || $notice instanceof \think\Paginator): $i = 0; $__LIST__ = $notice;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$notice): $mod = ($i % 2 );++$i;?>
     <div class="container-fluid">
-        <div class="row noticeList">
-            <a href="<?php echo url('notice_detail?id='.$notice['id']); ?>">
-            <div class="col-xs-2">
-                <img class="noticeImg" src="__STATIC__/image/1.png" />
-            </div>
-                <div class="col-xs-10">
-                    <p class="title"><?php echo $notice['title']; ?></p>
-                    <p class="description"><?php echo $notice['description']; ?></p>
-                    <p class="view">浏览: <?php echo $notice['view']; ?> <span class="pull-right"><?php echo date("Y-m-d H:i:s",$notice['create_time']); ?></span> </p>
-                </div>
-            </a>
-        </div>
+        <div id="content"></div>
     </div>
-    <?php endforeach; endif; else: echo "" ;endif; else: ?>
-    <td colspan="6" class="text-center"> 暂时还没有内容! </td>
-    <?php endif; ?>
 </div>
 <div class="page">
     <?php echo $page; ?>
@@ -69,5 +54,16 @@
 <script src="__STATIC__/jquery-1.11.2.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var loadpage=function (num) {
+        $('.btn_load').remove();
+        $.get("<?php echo url('notice/ajaxpage'); ?>",{page:num},function (data) {
+            $('#content').append(data);
+        });
+    }
+    loadpage(1);
+</script>
+
 </body>
 </html>

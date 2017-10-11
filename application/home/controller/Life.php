@@ -5,13 +5,14 @@ use think\Db;
 class Life extends Home
 {
     public function index(){
-        $life=Db::name('life')->paginate(8);
-
-        $page =$life->render();
-        $this->assign('life',$life);
-        $this->assign('page',$page);
         return $this->fetch('index');
 
+    }
+    public function ajaxpage($page=1){
+        $life=DB::name('life')->paginate(1);
+        $this->assign('life',$life);
+        $this->assign('num',++$page);
+        return $this->fetch();
     }
     public function life_detail($id){
         $data=Db::name('document_article')->where('id',$id)->select();

@@ -83,7 +83,7 @@ class Login extends Controller {
 			$uid = $User->register($username, $password, $email); 
 			if(0 < $uid){ //注册成功
 				//TODO: 发送验证邮件
-				$this->success('注册成功！',url('login/index'));
+				$this->success('注册成功！',url('login1/index'));
 			} else { //注册失败，显示错误信息
 				$this->error($uid);
 			}
@@ -96,9 +96,9 @@ class Login extends Controller {
 	public function logout(){
 		if(is_login()){
 			model('Member')->logout();
-			$this->success('退出成功！', url('User/login'));
+			$this->success('退出成功！', url('User/login1'));
 		} else {
-			$this->redirect('User/login');
+			$this->redirect('User/login1');
 		}
 	}
 

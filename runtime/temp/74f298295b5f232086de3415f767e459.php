@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:75:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/life\add.html";i:1507541983;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:75:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/life\add.html";i:1507708584;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -100,7 +100,7 @@
             
 
             
-
+<script type="text/javascript" src="/static/static/uploadify/jquery.uploadify.min.js"></script>
 <div class="main-title">
     <h2><?php echo isset($info['id'])?'编辑':'新增'; ?>活动</h2>
 </div>
@@ -130,9 +130,57 @@
             <input type="date" class="text input-large" name="update_time" value="<?php echo (isset($info['update_time']) && ($info['update_time'] !== '')?$info['update_time']:''); ?>">
         </div>
     </div>
+    <div class="controls">
+        <input type="file" id="upload_picture_path">
+        <input type="hidden" name="logo" id="cover_id_path" value="<?php echo (isset($info['logo']) && ($info['logo'] !== '')?$info['logo']:''); ?>"/>
+        <div class="upload-img-box">
+        </div>
+    </div>
 
+    <script type="text/javascript">
+        //上传图片
+        /* 初始化上传插件 */
+        var path=$('#cover_id_path').val();
+        if(path){
+            $("#cover_id_path").parent().find('.upload-img-box').html(
+                '<div class="upload-pre-item"><img src="' + path + '"/></div>'
+            );
+        }
+        //			alert(path);
+        $("#upload_picture_path").uploadify({
+            "height": 30,
+            "swf": "__PUBLIC__/static/uploadify/uploadify.swf",
+            "fileObjName": "download",
+            "buttonText": "上传图片",
+            "uploader": "<?php echo url('File/uploadPicture',array('session_id'=>session_id())); ?>",
+            "width": 120,
+            'removeTimeout': 1,
+            'fileTypeExts': '*.jpg; *.png; *.gif;',
+            "onUploadSuccess": uploadPicturepath,
+            'onFallback': function () {
+                alert('未检测到兼容版本的Flash.');
+            }
+        });
+        function uploadPicturepath(file, data) {
+            var data = $.parseJSON(data);
+            var src = '';
+            if (data.status) {
+                $("#cover_id_path").val(data.path);
+                src = data.url || '' + data.path
+                $("#cover_id_path").parent().find('.upload-img-box').html(
+                    '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                );
+
+            } else {
+                updateAlert(data.info);
+                setTimeout(function () {
+                    $('#top-alert').find('button').click();
+                    $(that).removeClass('disabled').prop('disabled', false);
+                }, 1500);
+            }
+        }
+    </script>
     <div class="form-item">
-
         <input type="hidden" name="content" value="0">
         <link rel="stylesheet" href="/static/static/kindeditor/default/default.css">
         <script charset="utf-8" src="/static/static/kindeditor/kindeditor-min.js"></script>

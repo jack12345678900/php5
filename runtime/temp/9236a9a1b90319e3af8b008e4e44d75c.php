@@ -53,14 +53,14 @@
 	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:0;padding-right:0"><?php echo get_username(); ?> <b class="caret"></b></a>
 	                            <ul class="dropdown-menu">
 	                                <li><a href="<?php echo url('user/user/profile'); ?>">修改密码</a></li>
-	                                <li><a href="<?php echo url('user/login/logout'); ?>">退出</a></li>
+	                                <li><a href="<?php echo url('user/login1/logout'); ?>">退出</a></li>
 	                            </ul>
 	                        </li>
 	                    </ul>
 	                <?php else: ?>
 	                    <ul class="nav" style="margin-right:0">
 	                        <li>
-	                            <a href="<?php echo url('user/login/index'); ?>">登录</a>
+	                            <a href="<?php echo url('user/login1/index'); ?>">登录</a>
 	                        </li>
 	                        <li>
 	                            <a href="<?php echo url('user/user/register'); ?>" style="padding-left:0;padding-right:0">注册</a>

@@ -51,7 +51,10 @@ class Service extends Admin{
         $this->assign('info',null);
         return $this->fetch('add');
     }
-
+    public function update($id){
+        Db::name('service')->where('id',$id)->update(['status'=>1]);
+        $this->redirect('service/index');
+    }
     //修改
     public  function edit($id){
         if ($this->request->isPost()){

@@ -101,7 +101,7 @@ class Register extends Addons{
 					$other['oauth_token'] = $this->t($_POST['oauth_token']);
 					$other['oauth_token_secret'] = $this->t($_POST['oauth_token_secret']);
 					$other['uid'] = $uid;
-					\think\Db::name('login')->add($other);
+					\think\Db::name('login1')->add($other);
 				}    
             	/* 登录用户 */  
 				$Member = model('Member');

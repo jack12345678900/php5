@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/service\index.html";i:1507475787;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/service\index.html";i:1507690830;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -134,9 +134,10 @@
             <td><?php echo $service['title']; ?></a></td>
             <td><?php echo $service['description']; ?></a></td>
             <td><?php echo date("Y-m-d H:i:s",$service['create_time']); ?></td>
-            <td><?php echo date("Y-m-d H:i:s",$service['update_time']); ?></td>
+            <td><?php echo $service['update_time']; ?></td>
             <td><?php echo $service['view']; ?></td>
-            <td><?php echo $service['status']; ?></td>
+            <td><?php echo !empty($service['status']) && $service['status']==1?"已处理":"待处理"; ?>
+                <a href="<?php echo url('update?method=update&id='.$service['id']); ?>" id="tongguo">处理</a></td>
             <td>
                 <a title="编辑" href="<?php echo url('edit?id='.$service['id'].'&pid='.$pid); ?>">编辑</a>
                 <a class="confirm ajax-get" title="删除" href="<?php echo url('del?id='.$service['id']); ?>">删除</a>
@@ -265,6 +266,22 @@
             }
         });
     });
+    $(function() {
+            $('#tongguo').click(function () {
+                    var id = $(this).closest('tr').attr('data-id');
+                    $.get(
+                        '/admin/yezhurenzheng/index.html', {'id': id}, function (data) {
+
+                            if (data == 'success') {
+                                alert("通过成功")
+                                location.reload();
+                            }
+                        }
+                    )
+                }
+            )
+        }
+    )
 </script>
 
 </body>

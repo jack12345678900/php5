@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:77:"C:\phpStudy\WWW\php5\public/../application/user/view/default/login\index.html";i:1496373782;s:77:"C:\phpStudy\WWW\php5\public/../application/user/view/default/base\common.html";i:1496373782;s:74:"C:\phpStudy\WWW\php5\public/../application/user/view/default/base\var.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:77:"C:\phpStudy\WWW\php5\public/../application/user/view/default/login1\index.html";i:1496373782;s:77:"C:\phpStudy\WWW\php5\public/../application/user/view/default/base\common.html";i:1496373782;s:74:"C:\phpStudy\WWW\php5\public/../application/user/view/default/base\var.html";i:1496373782;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -60,7 +60,7 @@
 	                <?php else: ?>
 	                    <ul class="nav" style="margin-right:0">
 	                        <li>
-	                            <a href="<?php echo url('User/login'); ?>">登录</a>
+	                            <a href="<?php echo url('User/login1'); ?>">登录</a>
 	                        </li>
 	                        <li>
 	                            <a href="<?php echo url('User/register'); ?>" style="padding-left:0;padding-right:0">注册</a>
@@ -79,7 +79,7 @@
 <header class="jumbotron subhead" id="overview">
   <div class="container">
     <h2>用户登录</h2>
-    <p><span><span class="pull-left"><span>还没有账号? <a href="<?php echo url('login/register'); ?>">立即注册</a></span> </span></p>
+    <p><span><span class="pull-left"><span>还没有账号? <a href="<?php echo url('login1/register'); ?>">立即注册</a></span> </span></p>
   </div>
 </header>
 

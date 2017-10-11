@@ -51,10 +51,11 @@
             <td><span>{$vo.intro}</span></td>
             <td><span>{:date('Y-m-d H:i:s',($vo['create_time']))}</span></td>
             <td>{$vo.status==1?"已处理":"待处理"}
-                <a href="{:url('edit?method=edit&id='.$vo['id'])}">编辑</a>
+                <a href="{:url('update?method=update&id='.$vo['id'])}" id="tongguo">处理</a>
+
             </td>
             <td>
-
+                <a href="{:url('edit?method=edit&id='.$vo['id'])}">编辑</a>
                 <a href="{:url('del?method=del&id='.$vo['id'])}" class="confirm ajax-get">删除</a>
             </td>
         </tr>
@@ -96,6 +97,24 @@
     });
     //导航高亮
     highlight_subnav('{:url('Management/index')}');
+
+
+    $(function() {
+            $('#tongguo').click(function () {
+                    var id = $(this).closest('tr').attr('data-id');
+                    $.get(
+                        '/admin/yezhurenzheng/index.html', {'id': id}, function (data) {
+
+                            if (data == 'success') {
+                                alert("通过成功")
+                                location.reload();
+                            }
+                        }
+                    )
+                }
+            )
+        }
+    )
 </script>
 {/block}
 

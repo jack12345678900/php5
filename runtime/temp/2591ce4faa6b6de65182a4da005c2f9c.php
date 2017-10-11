@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/management\edit.html";i:1507390040;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/management\edit.html";i:1507689728;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -127,13 +127,6 @@
             <label class="item-label">问题<span class="check-tips"></span></label>
             <div class="controls">
                 <textarea name="intro" class="textarea" style="width: 390px"><?php echo (isset($info['intro']) && ($info['intro'] !== '')?$info['intro']:''); ?></textarea>
-            </div>
-        </div>
-        <div class="form-item">
-            <label class="item-label">状态<span class="check-tips"></span></label>
-            <div class="controls">
-               未处理: <input type="radio" name="status" value="0" >
-                已受理:<input type="radio" name="status" value="1">
             </div>
         </div>
         <div class="form-item">

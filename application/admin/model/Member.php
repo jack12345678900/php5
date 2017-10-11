@@ -62,7 +62,7 @@ class Member extends Model {
         /* 更新登录信息 */
         $data = array(
             'uid'             => $user['uid'],
-            'login'           => array('exp', '`login`+1'),
+            'login1'           => array('exp', '`login1`+1'),
             'last_login_time' => time(),
             'last_login_ip'   => get_client_ip(1),
         );

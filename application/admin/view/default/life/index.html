@@ -29,19 +29,20 @@
         </thead>
         <tbody>
         {notempty name="list"}
-        {volist name="list" id="active"}
+        {volist name="list" id="life"}
         <tr>
             <td><input class="ids row-selected" type="checkbox" name="" id="" value="{$activity['id']}"> </td>
-            <td>{$active.sn}</td>
-            <td>{$active.title}</a></td>
-            <td>{$active.description}</a></td>
-            <td>{$active.create_time|date="Y-m-d H:i:s",###}</td>
-            <td>{$active.update_time|date="Y-m-d H:i:s",###}</td>
-            <td>{$active.view}</td>
-            <td>{$active.status}</td>
+            <td>{$life.sn}</td>
+            <td>{$life.title}</a></td>
+            <td>{$life.description}</a></td>
+            <td>{$life.create_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$life.update_time}</td>
+            <td>{$life.view}</td>
+            <td>{$life.status==1?"已处理":"待处理"}
+                <a href="{:url('update?method=update&id='.$life['id'])}" id="tongguo">处理</a></td>
             <td>
-                <a title="编辑" href="{:url('edit?id='.$active['id'].'&pid='.$pid)}">编辑</a>
-                <a class="confirm ajax-get" title="删除" href="{:url('del?id='.$active['id'])}">删除</a>
+                <a title="编辑" href="{:url('edit?id='.$life['id'].'&pid='.$pid)}">编辑</a>
+                <a class="confirm ajax-get" title="删除" href="{:url('del?id='.$life['id'])}">删除</a>
             </td>
         </tr>
         {/volist}

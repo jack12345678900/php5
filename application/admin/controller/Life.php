@@ -38,6 +38,7 @@ class Life extends Admin{
             $post_data['name']=$this->user['nickname'];
             $post_data['create_time']=time();
             $post_data['sn']=date('YmdHis');
+            $post_data['status']=0;
             //var_dump($post_data);exit;
             //保存数据库
             $data = $active->insert($post_data);
@@ -51,7 +52,10 @@ class Life extends Admin{
         $this->assign('info',null);
         return $this->fetch('add');
     }
-
+    public function update($id){
+        Db::name('life')->where('id',$id)->update(['status'=>1]);
+        $this->redirect('life/index');
+    }
     //修改
     public  function edit($id){
         if ($this->request->isPost()){
@@ -84,7 +88,7 @@ class Life extends Admin{
         }
 
         $map = array('id' => array('in', $id) );
-        if(\think\Db::name('market')->where($map)->delete()){
+        if(\think\Db::name('life')->where($map)->delete()){
             $this->success('删除成功');
         } else {
             $this->error('删除失败！');

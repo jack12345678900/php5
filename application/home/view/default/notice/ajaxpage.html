@@ -1,0 +1,19 @@
+{empty name="notice"}
+没有更多数据了
+{else/}
+{volist name="notice" id="notice"}
+<div class="row noticeList">
+    <a href="{:url('notice_detail?id='.$notice['id'])}">
+        <div class="col-xs-2">
+            <img class="noticeImg" src="{$notice.logo}" />
+        </div>
+        <div class="col-xs-10">
+            <p class="title">{$notice.title}</p>
+            <p class="description">{$notice.description}</p>
+            <p class="view">浏览: {$notice.view} <span class="pull-right">{$notice.create_time|date="Y-m-d H:i:s",###}</span> </p>
+        </div>
+    </a>
+</div>
+{/volist}
+<button class="btn btn-default btn-block btn_load" onclick="loadpage({$num})">获取更多</button>
+{/empty}

@@ -132,7 +132,7 @@ class Oauth extends Addons{
             }
 
             //检查是否存在这个用户的登录信息
-            if ( $info = \think\Db::name('login')->where ( "`type_uid`='" . $userinfo ['id'] . "' AND type='{$type}'" )->find () ) {
+            if ( $info = \think\Db::name('login1')->where ( "`type_uid`='" . $userinfo ['id'] . "' AND type='{$type}'" )->find () ) {
             	//获取用户信息
             	$user = \think\Db::name('ucenter_member')->field('password',true)->where ( "id=" . $info ['uid'] )->find ();
             	// 未在本站找到用户信息, 删除用户站外信息,让用户重新登录
@@ -168,7 +168,7 @@ class Oauth extends Addons{
             $this->assign('oauth_token', $oauth_token);
             $oauth_token_secret = isset($_GET['oauth_token_secret']) ? t($_GET['oauth_token_secret']) : $_SESSION[$type]['access_token']['oauth_token_secret'];
             $this->assign('oauth_token_secret', $oauth_token_secret);
-            return $this->fetch('addons://thirdlogin@./default/login');
+            return $this->fetch('addons://thirdlogin@./default/login1');
 		}
 	}
 
@@ -194,12 +194,12 @@ class Oauth extends Addons{
        // $syncdata ['is_sync'] = ($_SESSION [$type] ['isSync'])?$_SESSION [$type] ['isSync']:'1';
         cache('user_login_'.session('user_auth.uid'),null);
 
-        if ($info = \think\Db::name ( 'login' )->where ( "type_uid={$userinfo['id']} AND type='" . $type . "'" )->find ()) {
+        if ($info = \think\Db::name ( 'login1' )->where ( "type_uid={$userinfo['id']} AND type='" . $type . "'" )->find ()) {
             // 该新浪用户已在本站存在, 将其与当前用户关联(即原用户ID失效)
-            \think\Db::name ( 'login' )->where ( "`login_id`={$info['login_id']}" )->save ( $syncdata );
+            \think\Db::name ( 'login1' )->where ( "`login_id`={$info['login_id']}" )->save ( $syncdata );
         } else {
             // 添加同步信息
-            \think\Db::name ( 'login' )->add ( $syncdata );
+            \think\Db::name ( 'login1' )->add ( $syncdata );
         }
 
         $this->success('绑定成功',url('member/clientarea/bind'));
@@ -207,7 +207,7 @@ class Oauth extends Addons{
 
     private function _qbindPublish($type, &$result) {
     	if(!(input('encode'))){
-    		$this->error('获取key出错',U('user/login'));
+    		$this->error('获取key出错',U('user/login1'));
     	}
 
         //加载ThinkOauth类并实例化一个对象
@@ -235,12 +235,12 @@ class Oauth extends Addons{
        // $syncdata ['is_sync'] = ($_SESSION [$type] ['isSync'])?$_SESSION [$type] ['isSync']:'1';
         cache('user_login_'.$udata['id'],null);
 
-        if ($info = \think\Db::name ( 'login' )->where ( "type_uid={$userinfo['id']} AND type='" . $type . "'" )->find ()) {
+        if ($info = \think\Db::name ( 'login1' )->where ( "type_uid={$userinfo['id']} AND type='" . $type . "'" )->find ()) {
             // 该新浪用户已在本站存在, 将其与当前用户关联(即原用户ID失效)
-            \think\Db::name ( 'login' )->where ( "`login_id`={$info['login_id']}" )->save ( $syncdata );
+            \think\Db::name ( 'login1' )->where ( "`login_id`={$info['login_id']}" )->save ( $syncdata );
         } else {
             // 添加同步信息
-            \think\Db::name ( 'login' )->add ( $syncdata );
+            \think\Db::name ( 'login1' )->add ( $syncdata );
         }
 
         $user = new UserApi;
@@ -256,7 +256,7 @@ class Oauth extends Addons{
         if(session('user_auth.uid') > 0){
             $type = $_POST['type'];
 			cache('user_login_'.session('user_auth.uid'),null);
-            return \think\Db::name("login")->where("uid=".session('user_auth.uid')." AND type='{$type}'" )->delete();
+            return \think\Db::name("login1")->where("uid=".session('user_auth.uid')." AND type='{$type}'" )->delete();
 
         }else{
             return 0;

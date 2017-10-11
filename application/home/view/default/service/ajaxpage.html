@@ -1,0 +1,20 @@
+{empty name="service"}
+<h1 style="color: red">没有更多数据了</h1>
+{else/}
+{volist name="service" id="service"}
+
+    <div class="row noticeList">
+        <a href="{:url('service_detail?id='.$service['id'])}">
+            <div class="col-xs-2">
+                <img class="noticeImg" src="{$service.logo}" />
+            </div>
+            <div class="col-xs-10">
+                <p class="title">{$service.title}</p>
+                <p class="description">{$service.description}</p>
+                <p class="view">浏览: {$service.view} <span class="pull-right">{$service.create_time|date="Y-m-d H:i:s",###}</span> </p>
+            </div>
+        </a>
+    </div>
+{/volist}
+<button class="btn btn-default btn-block btn_load" onclick="loadpage({$num})">获取更多</button>
+{/empty}

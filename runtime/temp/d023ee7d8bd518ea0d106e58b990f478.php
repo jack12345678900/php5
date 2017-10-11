@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/life\index.html";i:1507441278;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/life\index.html";i:1507690520;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -127,19 +127,20 @@
         </tr>
         </thead>
         <tbody>
-        <?php if(!(empty($list) || (($list instanceof \think\Collection || $list instanceof \think\Paginator ) && $list->isEmpty()))): if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$active): $mod = ($i % 2 );++$i;?>
+        <?php if(!(empty($list) || (($list instanceof \think\Collection || $list instanceof \think\Paginator ) && $list->isEmpty()))): if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$life): $mod = ($i % 2 );++$i;?>
         <tr>
             <td><input class="ids row-selected" type="checkbox" name="" id="" value="<?php echo $activity['id']; ?>"> </td>
-            <td><?php echo $active['sn']; ?></td>
-            <td><?php echo $active['title']; ?></a></td>
-            <td><?php echo $active['description']; ?></a></td>
-            <td><?php echo date("Y-m-d H:i:s",$active['create_time']); ?></td>
-            <td><?php echo date("Y-m-d H:i:s",$active['update_time']); ?></td>
-            <td><?php echo $active['view']; ?></td>
-            <td><?php echo $active['status']; ?></td>
+            <td><?php echo $life['sn']; ?></td>
+            <td><?php echo $life['title']; ?></a></td>
+            <td><?php echo $life['description']; ?></a></td>
+            <td><?php echo date("Y-m-d H:i:s",$life['create_time']); ?></td>
+            <td><?php echo $life['update_time']; ?></td>
+            <td><?php echo $life['view']; ?></td>
+            <td><?php echo !empty($life['status']) && $life['status']==1?"已处理":"待处理"; ?>
+                <a href="<?php echo url('update?method=update&id='.$life['id']); ?>" id="tongguo">处理</a></td>
             <td>
-                <a title="编辑" href="<?php echo url('edit?id='.$active['id'].'&pid='.$pid); ?>">编辑</a>
-                <a class="confirm ajax-get" title="删除" href="<?php echo url('del?id='.$active['id']); ?>">删除</a>
+                <a title="编辑" href="<?php echo url('edit?id='.$life['id'].'&pid='.$pid); ?>">编辑</a>
+                <a class="confirm ajax-get" title="删除" href="<?php echo url('del?id='.$life['id']); ?>">删除</a>
             </td>
         </tr>
         <?php endforeach; endif; else: echo "" ;endif; else: ?>

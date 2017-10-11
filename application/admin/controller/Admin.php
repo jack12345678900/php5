@@ -44,7 +44,7 @@ class Admin extends Controller {
         if(defined('UID')) return ;
         define('UID',is_login());
         if( !UID ){// 还没登录 跳转到登录页面
-            $this->redirect('Publics/login');
+            $this->redirect('Publics/login1');
         }
         // 是否是超级管理员
         define('IS_ROOT',   is_administrator());

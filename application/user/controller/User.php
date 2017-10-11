@@ -20,7 +20,7 @@ class User extends Base {
      */
     public function profile(){
 		if ( !is_login() ) {
-			$this->error( '您还没有登陆',url('User/login') );
+			$this->error( '您还没有登陆',url('User/login1') );
 		}
         if ($this->request->isPost()) {
             //获取参数

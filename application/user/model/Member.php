@@ -17,7 +17,7 @@ class Member extends Model{
 	protected $autoWriteTimestamp = false;
 //     /* 用户模型自动完成 */
 //     protected $_auto = array(
-//         array('login', 0, self::MODEL_INSERT),
+//         array('login1', 0, self::MODEL_INSERT),
 //         array('reg_ip', 'get_client_ip', self::MODEL_INSERT, 'function', 1),
 //         array('reg_time', NOW_TIME, self::MODEL_INSERT),
 //         array('last_login_ip', 0, self::MODEL_INSERT),
@@ -72,7 +72,7 @@ class Member extends Model{
         /* 更新登录信息 */
         $data = array(
             'uid'             => $user['uid'],
-            'login'           => array('exp', '`login`+1'),
+            'login1'           => array('exp', '`login1`+1'),
             'last_login_time' => time(),
             'last_login_ip'   => get_client_ip(1),
         );

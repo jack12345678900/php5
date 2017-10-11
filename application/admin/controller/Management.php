@@ -40,6 +40,10 @@
               return $this->fetch('add');
           }
       }
+      public function update($id){
+          Db::name('management')->where('id',$id)->update(['status'=>1]);
+          $this->redirect('management/index');
+      }
       public function edit($id = 0){
           if($this->request->isPost()){
               $postdata = \think\Request::instance()->post();

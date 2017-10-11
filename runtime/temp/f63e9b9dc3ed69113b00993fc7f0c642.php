@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/active\index.html";i:1507441278;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/active\index.html";i:1507690221;s:78:"C:\phpStudy\WWW\php5\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -134,9 +134,10 @@
             <td><?php echo $active['title']; ?></a></td>
             <td><?php echo $active['description']; ?></a></td>
             <td><?php echo date("Y-m-d H:i:s",$active['create_time']); ?></td>
-            <td><?php echo date("Y-m-d H:i:s",$active['update_time']); ?></td>
+            <td><?php echo $active['update_time']; ?></td>
             <td><?php echo $active['view']; ?></td>
-            <td><?php echo $active['status']; ?></td>
+            <td><?php echo !empty($active['status']) && $active['status']==1?"已处理":"待处理"; ?>
+                <a href="<?php echo url('update?method=update&id='.$active['id']); ?>" id="tongguo">处理</a></td>
             <td>
                 <a title="编辑" href="<?php echo url('edit?id='.$active['id'].'&pid='.$pid); ?>">编辑</a>
                 <a class="confirm ajax-get" title="删除" href="<?php echo url('del?id='.$active['id']); ?>">删除</a>
@@ -265,6 +266,24 @@
             }
         });
     });
+
+
+    $(function() {
+            $('#tongguo').click(function () {
+                    var id = $(this).closest('tr').attr('data-id');
+                    $.get(
+                        '/admin/yezhurenzheng/index.html', {'id': id}, function (data) {
+
+                            if (data == 'success') {
+                                alert("通过成功")
+                                location.reload();
+                            }
+                        }
+                    )
+                }
+            )
+        }
+    )
 </script>
 
 </body>

@@ -143,7 +143,7 @@
 			<td><?php echo $vo['uid']; ?> </td>
 			<td><?php echo $vo['nickname']; ?></td>
 			<td><?php echo $vo['score']; ?></td>
-			<td><?php echo $vo['login']; ?></td>
+			<td><?php echo $vo['login1']; ?></td>
 			<td><span><?php echo time_format($vo['last_login_time']); ?></span></td>
 			<td><span><?php echo long2ip($vo['last_login_ip']); ?></span></td>
 			<td><?php echo $vo['status_text']; ?></td>

@@ -7,14 +7,15 @@
 // | Author: 艺品网络
 // +---------------------------------------------------------------------- 
 
-namespace app\admin\Controller;  
-use think\Controller;
+namespace app\home\controller;
+
 use app\common\controller\UcApi;
+use think\Controller;
 
 /**
  * 后台首页控制器 
  */
-class Publics extends Controller {
+class Login1 extends Controller {
 	public function __construct(){
 		/* 读取数据库中的配置 */
 		$config = cache('db_config_data');
@@ -23,9 +24,9 @@ class Publics extends Controller {
 			$config ['var_module'] = request()->module();
 			$config ['var_controller'] = request()->controller();
 			$config ['var_action'] = request()->action(); 
-			$config ['template']['view_path'] = APP_PATH.'admin/view/'.$config['admin_view_path'].'/'; //模板主题
-			$config['dispatch_error_tmpl' ]    =  APP_PATH .'admin'. DS .'view' . DS .$config['admin_view_path'].DS. 'public' . DS . 'error.html'; // 默认错误跳转对应的模板文件
-			$config['dispatch_success_tmpl' ]  =  APP_PATH .'admin'. DS .'view' . DS .$config['admin_view_path'].DS. 'public' . DS . 'success.html'; // 默认成功跳转对应的模板文件
+			$config ['template']['view_path'] = APP_PATH.'home/view/'.$config['home_view_path'].'/'; //模板主题
+			$config['dispatch_error_tmpl' ]    =  APP_PATH .'home'. DS .'view' . DS .$config['home_view_path'].DS. 'public' . DS . 'error.html'; // 默认错误跳转对应的模板文件
+			$config['dispatch_success_tmpl' ]  =  APP_PATH .'home'. DS .'view' . DS .$config['home_view_path'].DS. 'public' . DS . 'success.html'; // 默认成功跳转对应的模板文件
 			cache('db_config_data', $config);
 		}
 		config($config);//添加配置
@@ -35,7 +36,7 @@ class Publics extends Controller {
     /**
      * 后台用户登录 
      */
-    public function login($username = null, $password = null, $verify = null){
+    public function login1($username = null, $password = null, $verify = null){
         if(request()->isPost()){
             /* 检测验证码 TODO: */
            if(!captcha_check($verify)){
@@ -47,7 +48,7 @@ class Publics extends Controller {
             $uid = $User->login($username, $password);
             if(0 < $uid){ //UC登录成功
                 /* 登录用户 */
-                $Member = model('Member');
+                $Member = model('name');
                 if($Member->login($uid)){ //登录用户
                     //TODO:跳转到登录前页面
                     $this->success('登录成功！', url('Index/index'));
@@ -83,7 +84,7 @@ class Publics extends Controller {
     /* 退出登录 */
     public function logout(){
         if(is_login()){
-            model('Member')->logout();
+            model('name')->logout();
             session('[destroy]');
             $this->success('退出成功！', url('login1'));
         } else {
